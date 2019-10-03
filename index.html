@@ -7,21 +7,29 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-<div id="app">
+<di id="app">
+    <!-- Application -->
     <div class="row">
         <div class="col-lg-12">
             <h1 class="text-center">Evenements à nantes</h1>
-            <h5>Agendas des évènements de la ville de Nantes à venir.</h5>
+            <hr>
+            <h4 class="text-left">Agendas des évènements de la ville de Nantes à venir.</h4>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-4">
-            <input type="text" class="form-control">
+
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group col-md-6">
+                <label for="nom">Nom de l'évènement </label>
+                <input type="text" placeholder="Entrer un nom" v-model="label" id="nom" class="form-control">
+            </div>
         </div>
     </div>
     <br>
-    <div class="row">
-        <div class="card col-lg-3" v-for="event in events">
+        <div class="row">
+        <div class="card col-lg-3 mt-5" v-for="event in filteredEvents">
             <img :src="event.fields.media_1" class="card-img-top" alt="Image non disponible">
             <div class="card-body">
                 <h5 class="card-title left ">{{event.fields.nom }}</h5>
@@ -39,21 +47,21 @@
             </div>
         </div>
     </div>
-    <hr>
-    <footer>
-        <div class="row">
-            <div class="col-lg-4">
 
+    <footer class="mt-5">
+            <div class="row">
+                <div class="col-lg-12 jumbotron">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item"><a href="https://www.github.com/lxyflorian/evtnantes">Github</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-lg-4">
-                <a href="https://www.github.com/lxyflorian/evtnantes">Github</a>
-            </div>
-        </div>
     </footer>
 </div>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="http://unpkg.com/portal-vue"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 <script src="js/script.js"></script>
 </body>
