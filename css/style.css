@@ -1,4 +1,7 @@
 .row {
-    overflow-x : hidden;
     width: 100%;
+}
+
+.description {
+    cursor: pointer;
 }

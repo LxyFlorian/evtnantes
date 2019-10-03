@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <title>EVT Nantes - ELIE Florian</title>
@@ -29,20 +29,24 @@
     </div>
     <br>
         <div class="row">
-        <div class="card col-lg-3 mt-5" v-for="event in filteredEvents">
+        <div class="card col-lg-3 mt-5" v-for="event in filteredEvents" >
             <img :src="event.fields.media_1" class="card-img-top" alt="Image non disponible">
             <div class="card-body">
                 <h5 class="card-title left ">{{event.fields.nom }}</h5>
                 <span class="badge badge-secondary">{{ event.fields.adresse }} {{ event.fields.ville }}</span>
                 <span class="badge badge-success">{{ event.fields.rubrique }}</span>
                 <hr>
-                <p class="card-text">{{ event.fields.description.slice(0, 50) }} ...</p>
+                <p class="card-text description" :id="'description-' + event.recordid">{{ event.fields.description.slice(0, 50) }} ... <span class="badge badge-info"></span></p>
+                <b-popover :target="'description-' + event.recordid" triggers="hover" placement="top">
+                    <template v-slot:title>Description</template>
+                    {{ event.fields.description }}
+                </b-popover>
                 <div class="left">
                     <span class="float-left badge badge-danger" v-if="event.fields.complet == 'oui' ">COMPLET</span>
                     <span class="float-left badge badge-success" v-if="event.fields.complet == 'non' ">Places disponibles</span>
                 </div>
                 <div class="text-right">
-                    <a href="#" class="float-right btn btn-primary text-right">Voir la fiche</a>
+                    <a :href="event.fields.lien_agenda" target="_blank" class="float-right btn btn-primary text-right">Voir la fiche</a>
                 </div>
             </div>
         </div>
@@ -62,6 +66,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="http://unpkg.com/portal-vue"></script>
+<script src="https://unpkg.com/bootstrap-vue@2.0.2/dist/bootstrap-vue.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 <script src="js/script.js"></script>
 </body>
