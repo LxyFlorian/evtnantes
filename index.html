@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EVT Nantes - ELIE Florian</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div id="app">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="text-center">Evenements à nantes</h1>
+            <h5>Agendas des évènements de la ville de Nantes à venir.</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <input type="text" class="form-control">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="card col-lg-3" v-for="event in events">
+            <img :src="event.fields.media_1" class="card-img-top" alt="Image non disponible">
+            <div class="card-body">
+                <h5 class="card-title left ">{{event.fields.nom }}</h5>
+                <span class="badge badge-secondary">{{ event.fields.adresse }} {{ event.fields.ville }}</span>
+                <span class="badge badge-success">{{ event.fields.rubrique }}</span>
+                <hr>
+                <p class="card-text">{{ event.fields.description.slice(0, 50) }} ...</p>
+                <div class="left">
+                    <span class="float-left badge badge-danger" v-if="event.fields.complet == 'oui' ">COMPLET</span>
+                    <span class="float-left badge badge-success" v-if="event.fields.complet == 'non' ">Places disponibles</span>
+                </div>
+                <div class="text-right">
+                    <a href="#" class="float-right btn btn-primary text-right">Voir la fiche</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <footer>
+        <div class="row">
+            <div class="col-lg-4">
+
+            </div>
+            <div class="col-lg-4">
+                <a href="https://www.github.com/lxyflorian/evtnantes">Github</a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
