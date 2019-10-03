@@ -16,8 +16,8 @@ var App = new Vue({
                     self.events = response.data.records;
                     console.log(response.data);
                 })
-                .catch(function(erreur){
-                    console.log(erreur);
+                .catch(function(error){
+                    console.log(error);
                 })
                 .finally(function (data) {
                     console.log(data)
